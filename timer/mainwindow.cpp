@@ -16,7 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     player = new QMediaPlayer(this);
-    player->setMedia(QUrl::fromLocalFile("e:/timer/dixie-horn.mp3"));
+    player->setMedia(QUrl::fromLocalFile("g:/programare/timer_repo/timer/alarm.mp4"));
+//    player->setMedia(QUrl::fromLocalFile(QFileInfo("alarm.mp4").absoluteFilePath()));
     player->setVolume(50);
 
 
@@ -39,6 +40,7 @@ void MainWindow::showInitialTime()
     QString text = time.toString (Qt::TextDate);
 
     ui->lcdNumber->display(text);
+
 }
 
 
@@ -56,12 +58,17 @@ void MainWindow::actionSlotCronometru()
         t = time.addSecs(-1);
 
         QTime timeCompare;
-        timeCompare.setHMS(00,00,00,0);
+
+        //why set s to 1 ?
+        timeCompare.setHMS(00,00,01,0);
 
         if (time == timeCompare)
 
         {
-             player->play();
+
+            timer->stop();
+            player->play();
+
         }
 
     }
@@ -82,6 +89,14 @@ void MainWindow::on_pushButtonStop_clicked()
     ui->radioButtonCronometru->setEnabled(true);
     ui->radioButtonTimer->setEnabled(true);
     ui->timeEdit->setEnabled(true);
+    ui->pushButtonRestart->setEnabled(true);
+    ui->pushButtonStart->setEnabled(true);
+    ui->pushButtonStop->setEnabled(false);
+    player->stop();
+
+    // resetare time settings la cronometru
+    QTime time(0, 0, 0);
+    ui->timeEdit->setTime(time);
 }
 
 
@@ -115,6 +130,9 @@ void MainWindow::on_pushButtonStart_clicked()
     ui->timeEdit->setEnabled(false);
     ui->radioButtonCronometru->setEnabled(false);
     ui->radioButtonTimer->setEnabled(false);
+    ui->pushButtonStart->setEnabled(false);
+    ui->pushButtonRestart->setEnabled(false);
+    ui->pushButtonStop->setEnabled(true);
 }
 
 
@@ -128,6 +146,7 @@ void MainWindow::on_pushButtonRestart_clicked()
     timer->stop();
 
     showInitialTime();
+    ui->pushButtonRestart->setEnabled(false);
 }
 
 

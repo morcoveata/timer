@@ -5,6 +5,7 @@
 #include <QTime>
 #include <QTimer>
 #include <QtMultimedia/QMediaPlayer>
+#include <QFileInfo>
 
 
 
