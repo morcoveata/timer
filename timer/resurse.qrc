@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../resurse/alarm.mp4</file>
+    </qresource>
+</RCC>

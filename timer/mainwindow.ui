@@ -98,8 +98,13 @@
       <x>50</x>
       <y>250</y>
       <width>81</width>
-      <height>22</height>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
     </property>
     <property name="displayFormat">
      <string>HH:mm:ss</string>

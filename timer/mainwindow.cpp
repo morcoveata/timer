@@ -16,8 +16,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     player = new QMediaPlayer(this);
-    player->setMedia(QUrl::fromLocalFile("g:/programare/timer_repo/timer/alarm.mp4"));
-//    player->setMedia(QUrl::fromLocalFile(QFileInfo("alarm.mp4").absoluteFilePath()));
+
+    //create a path realtive to sound file
+    QString link = QApplication::applicationDirPath() + "/alarm.mp3";
+    player->setMedia(QUrl::fromLocalFile(link));
+
+
+
     player->setVolume(50);
 
 
