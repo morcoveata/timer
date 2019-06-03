@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/img"/>
+    <qresource prefix="/">
+        <file>../resources/appicon.ico</file>
+        <file>../resources/overlay.ico</file>
+    </qresource>
+</RCC>

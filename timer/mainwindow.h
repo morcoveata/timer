@@ -6,6 +6,12 @@
 #include <QTimer>
 #include <QtMultimedia/QMediaPlayer>
 #include <QFileInfo>
+#include <QStyle>
+#include <QWinTaskbarProgress>
+#include <QWinTaskbarButton>
+
+
+
 
 
 
@@ -27,7 +33,9 @@ public:
     QTimer *timer;
     QTime time;
     QTime t;
+    int timeOnTimerStart;
     int i;
+
 
 
 
@@ -36,6 +44,8 @@ public:
 
 public slots:
     void actionSlotCronometru();
+    void updateProgressBar();
+    void updateProgressBarTimer ();
 
 
 
@@ -54,6 +64,14 @@ private slots:
 private:
     Ui::MainWindow *ui;
     int timerId;
+    int counter;
+    int maximumCount;
+
+    QWinTaskbarButton *winTaskbarButton;
+    QWinTaskbarProgress *winTaskbarProgress;
+
+
+
 };
 
 #endif // MAINWINDOW_H

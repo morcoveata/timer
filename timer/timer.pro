@@ -4,8 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT += core gui
 QT += multimedia
+QT += winextras
+
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -39,3 +42,5 @@ FORMS += \
 win32: RC_ICONS = Ampeross-Qetto-2-Timer.ico
 
 RESOURCES +=
+
+DISTFILES +=
