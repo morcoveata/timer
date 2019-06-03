@@ -45,7 +45,7 @@ public:
 public slots:
     void actionSlotCronometru();
     void updateProgressBar();
-    void updateProgressBarTimer ();
+
 
 
 

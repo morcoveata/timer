@@ -154,28 +154,6 @@ void MainWindow::updateProgressBar()
 
 
 
-void MainWindow::updateProgressBarTimer()
-{
-    winTaskbarProgress->show();
-    if (counter < QTime(0,0).secsTo(time))
-    {
-        counter++;
-        winTaskbarProgress ->setValue(counter);
-    }
-    else
-    {
-        counter = 1;
-        player->play();
-    }
-}
-
-
-
-
-
-
-
-
 void MainWindow::on_pushButtonStop_clicked()
 {
 
