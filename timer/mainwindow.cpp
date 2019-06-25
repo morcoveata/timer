@@ -171,6 +171,7 @@ void MainWindow::on_pushButtonStop_clicked()
     // resetare time settings la cronometru
     QTime time(0, 0, 0);
     ui->timeEdit->setTime(time);
+
 }
 
 
@@ -184,8 +185,6 @@ void MainWindow::on_pushButtonStart_clicked()
 
     //linia asta este foarte importanta
     winTaskbarButton->setWindow(windowHandle());
-
-
 
 
     if (ui->radioButtonCronometru->isChecked())
@@ -223,6 +222,9 @@ void MainWindow::on_pushButtonRestart_clicked()
 
     showInitialTime();
     ui->pushButtonRestart->setEnabled(false);
+
+    counter = 0;
+    winTaskbarProgress ->setValue(0);
 }
 
 
