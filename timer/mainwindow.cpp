@@ -24,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     maximumCount = 3600;
+    countPushStart = 0;
 
     winTaskbarProgress->setMinimum(0);
     winTaskbarProgress->setMaximum(maximumCount);
@@ -156,21 +157,27 @@ void MainWindow::updateProgressBar()
 
 void MainWindow::on_pushButtonStop_clicked()
 {
+    if(ui->radioButtonCronometru->isChecked()){
 
-    //https://forum.qt.io/topic/9470/timer-stop-from-slot/2
-    timer->stop();
+        //https://forum.qt.io/topic/9470/timer-stop-from-slot/2
+        timer->stop();
 
-    ui->radioButtonCronometru->setEnabled(true);
-    ui->radioButtonTimer->setEnabled(true);
-    ui->timeEdit->setEnabled(true);
-    ui->pushButtonRestart->setEnabled(true);
-    ui->pushButtonStart->setEnabled(true);
-    ui->pushButtonStop->setEnabled(false);
-    player->stop();
+        ui->radioButtonCronometru->setEnabled(true);
+        ui->radioButtonTimer->setEnabled(true);
+        ui->timeEdit->setEnabled(true);
+        ui->pushButtonRestart->setEnabled(true);
+        ui->pushButtonStart->setEnabled(true);
+        ui->pushButtonStop->setEnabled(false);
+        player->stop();
 
-    // resetare time settings la cronometru
-    QTime time(0, 0, 0);
-    ui->timeEdit->setTime(time);
+    }
+    else if (ui->radioButtonTimer->isChecked()) {
+        timer->stop();
+
+        ui->pushButtonStart->setEnabled(true);
+
+    }
+
 
 }
 
@@ -183,6 +190,7 @@ void MainWindow::on_pushButtonStop_clicked()
 void MainWindow::on_pushButtonStart_clicked()
 {
 
+    countPushStart = countPushStart + 1;
     //linia asta este foarte importanta
     winTaskbarButton->setWindow(windowHandle());
 
@@ -197,13 +205,15 @@ void MainWindow::on_pushButtonStart_clicked()
     {
         timer->start(1000);
 
+        // if user push start button for second time and on, then LCD get time not from timeEdit, but from time variable
+        if (countPushStart == 1){
         //https://stackoverflow.com/questions/31428987/how-to-read-current-time-in-qtimeedit-in-qt
         time = ui->timeEdit->time();
         QString text = time.toString ("hh:mm:ss");
         ui->lcdNumber->display (text);
-
         timeOnTimerStart = QTime(0,0,0).secsTo(time);
         winTaskbarProgress->setMaximum(timeOnTimerStart);
+        }
     }
 
     ui->timeEdit->setEnabled(false);

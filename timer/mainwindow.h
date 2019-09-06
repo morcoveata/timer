@@ -30,6 +30,11 @@ public:
 
     void showInitialTime();
     void OnStartButton();
+
+    //TODO
+    void setLCDfromTimeEditControl();
+    int countPushStart;
+
     QTimer *timer;
     QTime time;
     QTime t;
@@ -54,11 +59,8 @@ public slots:
 private slots:
     void on_pushButtonStop_clicked();
     void on_pushButtonStart_clicked();
-
     void on_pushButtonRestart_clicked();
-
     void on_radioButtonTimer_clicked();
-
     void on_radioButtonCronometru_clicked();
 
 private:
